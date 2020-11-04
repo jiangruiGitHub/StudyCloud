@@ -25,7 +25,7 @@ public class PaymentController {
 
     @PostMapping(value = "/add")
     @ResponseBody
-    public CommonResult add(Payment payment){
+    public CommonResult add(@RequestBody Payment payment){
         int result=paymentService.add(payment);
         log.info("插入"+result+"条");
         if(result>0){

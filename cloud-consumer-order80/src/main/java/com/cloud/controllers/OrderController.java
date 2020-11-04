@@ -3,6 +3,7 @@ package com.cloud.controllers;
 import com.cloud.entities.CommonResult;
 import com.cloud.entities.Payment;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -25,5 +26,9 @@ public class OrderController {
     @RequestMapping("/addPayment")
     public CommonResult<Payment> add(Payment payment){
        return restTemplate.postForObject(PAYMENT_URL+"/api/payment/add",payment,CommonResult.class);
+    }
+    @RequestMapping("/getPayment/{id}")
+    public CommonResult<Payment> get(@PathVariable("id") Long id){
+        return restTemplate.getForObject(PAYMENT_URL+"/api/payment/get/"+id,CommonResult.class);
     }
 }
